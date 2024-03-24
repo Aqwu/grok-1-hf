@@ -28,7 +28,7 @@ localhostForwarding=true
 
 Then, run
 ```
-wsl -- shutdown 
+wsl --shutdown 
 ```
 
 Restart WSL2 Ubuntu 22.04.
