@@ -2,7 +2,7 @@
 
 Unofficial dequantized weight of grok-1 in HF Transformers format.
 
-In WSL2, convert to HF format.
+In WSL2 Ubuntu 22.04, convert to HF format, Trading time and storage space for GPU..
 
 Refer to the [code1](https://gist.github.com/chu-tianxiang/ec310e15d56949fd0f351cb5f65ee7a1).
 [code2](https://huggingface.co/keyfan/grok-1-hf).
