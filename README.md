@@ -7,12 +7,12 @@ In WSL2, convert to HF format.
 Refer to the [code1](https://gist.github.com/chu-tianxiang/ec310e15d56949fd0f351cb5f65ee7a1).
 [code2](https://huggingface.co/keyfan/grok-1-hf).
 
+Due to insufficient memory and GPU, everything needs to run on WSL2 virtual memory and under the CPU in Python. 
+
 The entire process may require 2TB of memory, so you will need a 2TB virtual space. 
 On the C drive, you need to have 2TB of free space.
 
 The converted model file is about 590GB, so you will also need 600GB of space.
-
-Due to insufficient memory and GPU, everything needs to run on WSL2 virtual memory and under the CPU in Python. 
 
 Open Windows Explorer, enter %UserProfile% in the address bar and press Enter. 
 In that directory, create a file named .wslconfig and write the following content.
