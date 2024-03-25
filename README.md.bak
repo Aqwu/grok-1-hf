@@ -69,8 +69,6 @@ cd bin
 
 python convert-hf-to-gguf.py grok0-1-hf/ --outfile grok0-1-hf/ggml-model-f16.gguf --outtype f16
 ./quantize grok0-1-hf/ggml-model-f16.gguf  grok0-1-hf/ggml-model-q4_0.gguf q4_0
-./main -m grok-1/ggml-model-f16.gguf -p "The answer to life the universe and everything is of course" -s 1 -n 128
-
 ```
 
 
