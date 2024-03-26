@@ -58,7 +58,7 @@ python convert_hf.py
 # gguf
 ```
 
-https://github.com/ggerganov/llama.cpp
+git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp
 mkdir build
 cd build
@@ -67,12 +67,39 @@ cmake ..
 make
 cd bin
 
-python convert-hf-to-gguf.py grok0-1-hf/ --outfile grok0-1-hf/ggml-model-f16.gguf --outtype f16
-./quantize grok0-1-hf/ggml-model-f16.gguf  grok0-1-hf/ggml-model-q4_0.gguf q4_0
+python convert-hf-to-gguf.py grok-1-hf/ --outfile grok-1-hf/ggml-model-f16.gguf --outtype f16
+./quantize grok-1-hf/ggml-model-f16.gguf  grok-1-hf/ggml-model-q2_k_s.gguf q2_k_s
+
 ./main -m grok-1/ggml-model-f16.gguf -p "The answer to life the universe and everything is of course" -s 1 -n 128
+
+# chat
+./main -m grok-1-hf/ggml-model-q2_k_s.gguf -n 256 --repeat_penalty 1.0 --color -i -r "User:" -f ../../prompts/chat-with-bob.txt
 
 ```
 
+# windows gguf cuda
+```
+
+git clone https://github.com/ggerganov/llama.cpp
+cd llama.cpp
+mkdir build
+cd build
+
+cmake .. -DLLAMA_CUDA=ON
+cmake --build . --config Release
+cd bin
+
+python convert-hf-to-gguf.py grok-1-hf/ --outfile grok-1-hf/ggml-model-f16.gguf --outtype f16
+quantize grok-1-hf/ggml-model-f16.gguf  grok-1-hf/ggml-model-q2_k_s.gguf q2_k_s
+
+gguf-split  --split-max-tensors 256 grok-1-hf/ggml-model-q2_k_s.gguf grok-1-hf/grok-1-q2_k_s
+
+main -m grok-1-hf/grok-1-q2_k_s-00001-of-00009.gguf -p "The answer to life the universe and everything is of course" -s 1 -n 128
+
+# chat
+main -m grok-1-hf/grok-1-q2_k_s-00001-of-00009.gguf -n 256 --repeat_penalty 1.0 --color -i -r "User:" -f ../../prompts/chat-with-bob.txt
+
+```
 
 # Grok-1
 
