@@ -55,6 +55,42 @@ export jax_platform_name="cpu"
 python convert_hf.py
 
 ```
+# GrokForCausalLM
+
+```
+GrokForCausalLM(
+  (transformer): GrokModel(
+    (in_out_embed): Embedding(131072, 6144, padding_idx=0)
+    (decoder_layer): ModuleList(
+      (0-63): 64 x GrokDecoderLayer(
+        (multi_head_attention): GrokAttention(
+          (query): Linear4bit(in_features=6144, out_features=6144, bias=False)
+          (key): Linear4bit(in_features=6144, out_features=1024, bias=False)
+          (value): Linear4bit(in_features=6144, out_features=1024, bias=False)
+          (linear): Linear4bit(in_features=6144, out_features=6144, bias=False)
+          (rotary_emb): GrokRotaryEmbedding()
+        )
+        (router): Linear4bit(in_features=6144, out_features=8, bias=False)
+        (moe): ModuleList(
+          (0-7): 8 x GrokBlockSparseTop2MLP(
+            (linear_v): Linear4bit(in_features=6144, out_features=32768, bias=False)
+            (linear_1): Linear4bit(in_features=32768, out_features=6144, bias=False)
+            (linear): Linear4bit(in_features=6144, out_features=32768, bias=False)
+            (act_fn): SiLU()
+          )
+        )
+        (rms_norm): GrokRMSNorm()
+        (rms_norm_1): GrokRMSNorm()
+        (rms_norm_2): GrokRMSNorm()
+        (rms_norm_3): GrokRMSNorm()
+      )
+    )
+    (rms_norm): GrokRMSNorm()
+  )
+  (lm_head): Linear(in_features=6144, out_features=131072, bias=False)
+)
+```
+
 # gguf
 ```
 
